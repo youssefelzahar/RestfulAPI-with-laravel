@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\v1;
 
-use App\Models\Invoice;
+use App\Http\Resources\V1\CustomerResource;
+use App\Models\Customer;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreInvoiceRequest;
-use App\Http\Requests\UpdateInvoiceRequest;
+use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Resources\V1\CustomerCollection;
 
-class InvoiceController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +17,7 @@ class InvoiceController extends Controller
     public function index()
     {
         //
+        return new CustomerCollection(Customer::paginate());
     }
 
     /**
@@ -28,7 +31,7 @@ class InvoiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreInvoiceRequest $request)
+    public function store(StoreCustomerRequest $request)
     {
         //
     }
@@ -36,15 +39,16 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Invoice $invoice)
+    public function show(Customer $customer)
     {
         //
+        return new CustomerResource($customer);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Invoice $invoice)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -52,7 +56,7 @@ class InvoiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInvoiceRequest $request, Invoice $invoice)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         //
     }
@@ -60,7 +64,7 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Invoice $invoice)
+    public function destroy(Customer $customer)
     {
         //
     }
